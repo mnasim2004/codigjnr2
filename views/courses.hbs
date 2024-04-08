@@ -1,0 +1,64 @@
+        {{!-- <h1>All Courses</h1>
+
+        {{#if courses}}
+        <h2>Available Courses:</h2>
+        <ul>
+            {{#each courses}}
+            <li>
+                <strong>Course Name:</strong> {{ this.course_name }}<br>
+                <strong>Description:</strong> {{ this.description }}
+
+                <!-- Add button to select the course -->
+                <form action="/users/selectCourse/{{this.id}}" method="POST">
+                    <button type="submit">Enroll</button>
+                </form>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>No courses available.</p>
+        {{/if}} --}}
+
+        <h2>Enrolled Courses:</h2>
+                            {{#if userCourses}}
+                            <ul>
+                                {{#each userCourses}}
+                                <li>
+                                    <strong>Course Name:</strong> {{ this.course_name }}<br>
+                                    <strong>Description:</strong> {{ this.description }}<br>
+                                    <strong>Progress:</strong> {{ this.progress }}%<br>
+                                </li>
+                                <form action="/users/nextsession/{{this.user_course_id}}" method="POST">
+                                    <button type="submit">Next</button>
+                                </form>
+                                {{/each}}
+                            </ul>
+                            {{else}}
+                            <p>No courses enrolled.</p>
+                            {{/if}}
+
+{{!-- <h2>Enrolled Courses:</h2>
+{{#if userCourses}}
+<ul>
+    {{#each userCourses}}
+    <li>
+        <strong>Course Name:</strong> {{ this.course_name }}<br>
+        <strong>Description:</strong> {{ this.description }}<br>
+        <strong>Progress:</strong> {{ this.progress }}%<br>
+
+        {{#if (isProgressZero this.progress)}}
+            <button type="button">Next</button>
+        {{else if (eq this.progress 100)}}
+            <button type="button">Previous</button>
+        {{else}}
+            <button type="button">Previous</button>
+            <button type="button">Next</button>
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p>No courses enrolled.</p>
+{{/if}} --}}
+
+<!-- Include Handlebars from a CDN -->

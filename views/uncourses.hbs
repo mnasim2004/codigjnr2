@@ -1,0 +1,35 @@
+        <h1>All Courses</h1>
+
+        {{#if courses}}
+        <h2>Available Courses:</h2>
+        <ul>
+            {{#each courses}}
+            <li>
+                <strong>Course Name:</strong> {{ this.course_name }}<br>
+                <strong>Description:</strong> {{ this.description }}
+
+                <!-- Add button to select the course -->
+                <form action="/users/selectCourse/{{this.id}}" method="POST">
+                    <button type="submit">Enroll</button>
+                </form>
+            </li>
+            {{/each}}
+        </ul>
+        {{else}}
+        <p>No courses available.</p>
+        {{/if}}
+{{!-- 
+        <h2>Enrolled Courses:</h2>
+                            {{#if userCourses}}
+                            <ul>
+                                {{#each userCourses}}
+                                <li>
+                                    <strong>Course Name:</strong> {{ this.course_name }}<br>
+                                    <strong>Description:</strong> {{ this.description }}<br>
+                                    <strong>Progress:</strong> {{ this.progress }}%<br>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{else}}
+                            <p>No courses enrolled.</p>
+                            {{/if}} --}}

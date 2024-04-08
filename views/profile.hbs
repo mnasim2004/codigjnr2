@@ -1,0 +1,75 @@
+
+
+    <style>
+
+
+        .username {
+            text-align: center;
+            font-size: 12px; /* Adjust font size as needed */
+            margin-top: 5px; /* Adjust top margin as needed */
+        }
+    </style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1>User Details</h1>
+                    <a href="/users/logout" class="btn btn-danger">Logout</a>
+                </div>
+                <img src="/uploads/{{ user.profile_pic }}" alt="User Photo" class="user-photo">
+                <ul>  
+                    <li><strong>Username:</strong> {{ user.id }}</li>                 
+                    <li><strong>Username:</strong> {{ user.username }}</li>
+                    <li><strong>Name:</strong> {{ user.name }}</li>
+                </ul>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        {{!-- <a href="/users/courses/{{ user.id }}">View My Courses</a> --}}
+                        <h1>All Courses</h1>
+                        {{#if courses}}
+                        <ul>
+                            {{#each courses}}
+                            <li>
+                                <a href="/users/uncourses/{{ this.id }}">
+      <strong>Course Name:</strong> {{ this.course_name }}<br>
+    </a>
+                                <strong>Description:</strong> {{ this.description }}
+
+                                <!-- Add button to select the course -->
+                                <form action="/users/selectCourse/{{this.id}}" method="POST">
+                                    <button type="submit">Enroll</button>
+                                </form>
+                            </li>
+                            {{/each}}
+                        </ul>
+                        {{else}}
+                        <p>No courses available.</p>
+                        {{/if}}
+
+                        <h2>Enrolled Courses:</h2>
+                        {{#if userCourses}}
+                        <ul>
+                            {{#each userCourses}}
+                            <li>
+                                <a href="/users/courses/{{ this.id }}">
+      <strong>Course Name:</strong> {{ this.course_name }}<br>
+    </a>
+                                <strong>Description:</strong> {{ this.description }}
+                                <form action="/users/unenrollCourse/{{this.id}}" method="POST">
+                                    <button type="submit">Unenroll</button>
+                                </form>
+                            </li>
+                            {{/each}}
+                        </ul>
+                        {{else}}
+                        <p>No courses enrolled.</p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
